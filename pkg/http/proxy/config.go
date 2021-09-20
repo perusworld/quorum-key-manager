@@ -18,7 +18,7 @@ type Config struct {
 
 func (cfg *Config) SetDefault() *Config {
 	if cfg == nil {
-		cfg = new(Config)
+		*cfg = Config{}
 	}
 
 	if cfg.Transport == nil {

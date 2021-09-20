@@ -190,7 +190,7 @@ Environment variable: %q`, authOIDCClaimPermissionsEnv)
 
 func NewAuthConfig(vipr *viper.Viper) (*auth.Config, error) {
 	// OIDC
-	certsOIDC := []*x509.Certificate{}
+	var certsOIDC []*x509.Certificate
 
 	fileCertOIDC, err := oidcCert(vipr)
 	if err != nil {
@@ -275,7 +275,7 @@ func oidcIssuerURL(vipr *viper.Viper) ([]*x509.Certificate, error) {
 		return nil, fmt.Errorf("failed to retrieve auth server jwks: %s", issuerServer)
 	}
 
-	certs := []*x509.Certificate{}
+	var certs []*x509.Certificate
 	for _, kw := range jwks.Keys {
 		certs = append(certs, kw.Certificates...)
 	}
